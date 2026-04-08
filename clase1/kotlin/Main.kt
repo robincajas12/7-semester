@@ -1,5 +1,6 @@
 package org.example
 import kotlinx.coroutines.*
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -23,8 +24,25 @@ suspend fun main() {
     println("Hello, " + name + "!")
     println(Thread.currentThread().name)
     println(5.hello())
+    aaa()
+    "xdsdaqda".slice(2..6)
+    "xdsdaqda".substring(2,5)
+    val xd: String = readln();
+    if(true and false or !false) println(xd)
 
 
+
+}
+suspend fun aaa() = coroutineScope{
+    this.launch {
+        // Suspends to simulate background work
+        delay(100.milliseconds)
+        println("Sending notification in background")
+    }
+
+
+    // Main coroutine continues while a previous one suspends
+    println("Scope continues")
 }
 suspend fun greet() {
     println("The greet() on the thread: ${Thread.currentThread().name}")
@@ -34,15 +52,4 @@ suspend fun greet() {
 fun Int.hello()
 {
     println(this * 5)
-}
-suspend fun performBackgroundWork() = coroutineScope { // this: CoroutineScope
-    // Starts a coroutine that runs without blocking the scope
-    this.launch {
-        // Suspends to simulate background work
-        delay(100.milliseconds)
-        println("Sending notification in background")
-    }
-
-    // Main coroutine continues while a previous one suspends
-    println("Scope continues")
 }
