@@ -35,3 +35,15 @@ fun Int.hello()
 {
     println(this * 5)
 }
+
+suspend fun performBackgroundWork() = coroutineScope { // this: CoroutineScope
+    // Starts a coroutine that runs without blocking the scope
+    this.launch {
+        // Suspends to simulate background work
+        delay(100.milliseconds)
+        println("Sending notification in background")
+    }
+
+    // Main coroutine continues while a previous one suspends
+    println("Scope continues")
+}
