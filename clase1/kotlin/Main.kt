@@ -157,3 +157,16 @@ fun alsoFunction() {
     println(reversedLongUppercaseMedals)
     // [BRONZE, SILVER]
 }
+
+
+fun main14052026(){
+    val matrix = Array(10, {Array(10, {0})})
+     println("Hello Kotlin")
+    val matrix1 = Array(3) { DoubleArray(3) }
+    val matriz2 = arrayOf(arrayOf(1,2,3), arrayOf(3,4,5))
+    val matriz3 = Array(5){4}
+    matriz2.forEach { it.forEach { print("$it " +    Random.nextInt(1,10)) } }
+    Random.nextInt(1,50);
+    print(matriz3.contentToString())
+    
+}
