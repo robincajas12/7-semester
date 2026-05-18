@@ -2,7 +2,20 @@ package org.example
 import kotlinx.coroutines.*
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+fun main456465456456() {
+    val name = "Kotlin"
+    val pow = calcularPotencia(5)
+    println(pow(5))
 
+}
+fun calcularPotencia(potencia: Int,vararg uuw: Int): (Int) -> Double {
+    return {  n: Int ->
+        println("xd")
+        (n * potencia + n).toDouble()
+    }
+}
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 suspend fun main() {
