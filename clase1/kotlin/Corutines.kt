@@ -7,12 +7,11 @@ dependencies {
   // Source: https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
   runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 }
-
-
 package com.prograavanzada
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -39,11 +38,18 @@ fun main() = runBlocking {
     println(Thread.currentThread())
     var suma = 0
     for(i in 1 .. 1000_000_000)
+    {
       suma += i
-    println("Resultado $suma")
-  }
+      if(i  > 5 ) {
+        this.cancel()
+        println("Resultado $suma")
 
+      }
+    }
+  }.join()
 }
+
+
 /* corutina secuencial*/
 suspend fun getProducts()
 {
@@ -56,4 +62,6 @@ suspend fun getUsers(){
   println("Users cargados")
 }
 /**------------------------------------*/
+
+
 
