@@ -36,3 +36,14 @@ fun tablaMultiplcarInfinita(): Sequence<Int> = sequence {
   }
 }
 ```
+これを使えば、リストの最大値を見つけることができます。
+ ```kotlin
+fun getMax(list: List<Int>, max : Int): Int{
+  if(list.size == 0) return max
+  if(list.get(0) > max) return getMax(list.drop(1), list.get(0))
+  else return getMax(list.drop(1), max)
+}
+```
+
+
+
