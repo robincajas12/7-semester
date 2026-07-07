@@ -5,6 +5,34 @@ import arrow.core.Either
 import arrow.core.left
 import arrow.core.right
 
+data class Usuario(
+    val correo: String,
+    val password: String
+)
+
+sealed class ErrorLogin {
+    object UsuarioNoExiste : ErrorLogin()
+    object PasswordInvalid : ErrorLogin()
+    object BlockedAccountInvalid : ErrorLogin()
+}
+
+// Retorna Either<ErrorLogin, Usuario>
+fun loginArrow(user: Usuario): Either<ErrorLogin, Usuario> {
+    return when {
+        user.correo == "bloqueado@ejemplo.com" -> 
+            ErrorLogin.BlockedAccountInvalid.left()
+            
+        user.correo != "admin@ejemplo.com" -> 
+            ErrorLogin.UsuarioNoExiste.left()
+            
+        user.password != "1234" -> 
+            ErrorLogin.PasswordInvalid.left()
+            
+        else -> 
+            user.right()
+    }
+}
+
 ```
 ```kotlin
 package org.example
@@ -89,35 +117,5 @@ sealed class ErrorLogin {
 ```
 
 ```koltin
-import arrow.core.Either
-import arrow.core.left
-import arrow.core.right
 
-data class Usuario(
-    val correo: String,
-    val password: String
-)
-
-sealed class ErrorLogin {
-    object UsuarioNoExiste : ErrorLogin()
-    object PasswordInvalid : ErrorLogin()
-    object BlockedAccountInvalid : ErrorLogin()
-}
-
-// Retorna Either<ErrorLogin, Usuario>
-fun loginArrow(user: Usuario): Either<ErrorLogin, Usuario> {
-    return when {
-        user.correo == "bloqueado@ejemplo.com" -> 
-            ErrorLogin.BlockedAccountInvalid.left()
-            
-        user.correo != "admin@ejemplo.com" -> 
-            ErrorLogin.UsuarioNoExiste.left()
-            
-        user.password != "1234" -> 
-            ErrorLogin.PasswordInvalid.left()
-            
-        else -> 
-            user.right()
-    }
-}
 ```
